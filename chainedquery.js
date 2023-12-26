@@ -138,6 +138,20 @@ const resolvers = {
         vehicleData.manufacturer = manufacturerResponse.data.data.getManufacturerById;
 
         return vehicleData;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        throw new Error('Failed to fetch data');
+      }
+    },
+  },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen().then(({ url }) => {
+  console.log(`Main server ready at ${url}`);
+});
+
      
 // Explanation:
 
